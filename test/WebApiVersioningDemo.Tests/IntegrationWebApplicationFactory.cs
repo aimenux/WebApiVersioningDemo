@@ -1,10 +1,9 @@
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 
 namespace WebApiVersioningDemo.Tests;
 
-internal class WebApiTestFixture : WebApplicationFactory<Program>
+internal class IntegrationWebApplicationFactory : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

@@ -17,4 +17,4 @@ In this repo, i m using a basic web api solution with multiple versions supporte
 > - `V3.1` add new route `Search`
 >
 
-**`Tools`** : net 7.0, swagger, integration-testing
+**`Tools`** : net 8.0, swagger, integration-testing

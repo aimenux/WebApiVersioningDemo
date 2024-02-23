@@ -6,6 +6,7 @@ namespace WebApiVersioningDemo.Api.Controllers.V3;
 [ApiController]
 [ApiVersion("3.0")]
 [ApiVersion("3.1")]
+[ApiVersion("3.2")]
 [Route("api/v{version:apiVersion}/[controller]")]
 public class WeathersController : ControllerBase
 {
@@ -36,6 +37,7 @@ public class WeathersController : ControllerBase
     }
 
     [MapToApiVersion("3.1")]
+    [MapToApiVersion("3.2")]
     [HttpGet("search")]
     public IEnumerable<Weather> SearchWeathers()
     {
@@ -43,7 +45,23 @@ public class WeathersController : ControllerBase
             .Select(index => new Weather
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                CelsiusTemperature = Random.Shared.Next(-20, 60)
+                CelsiusTemperature = Random.Shared.Next(-20, 60),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            })
+            .ToList();
+        return weathers;
+    }
+    
+    [MapToApiVersion("3.2")]
+    [HttpGet("full-search")]
+    public IEnumerable<Weather> FullSearchWeathers()
+    {
+        var weathers = Enumerable.Range(1, 5)
+            .Select(index => new Weather
+            {
+                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                CelsiusTemperature = Random.Shared.Next(-20, 60),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToList();
         return weathers;

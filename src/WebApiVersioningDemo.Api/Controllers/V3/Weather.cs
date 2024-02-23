@@ -1,6 +1,6 @@
 namespace WebApiVersioningDemo.Api.Controllers.V3;
 
-public class Weather
+public record Weather
 {
     public DateOnly Date { get; init; }
     public int CelsiusTemperature { get; init; }
