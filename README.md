@@ -15,6 +15,8 @@ In this repo, i m using a basic web api solution with multiple versions supporte
 > - `V3` add property `Summary` to response DTO
 > 
 > - `V3.1` add new route `Search`
+> 
+> - `V3.2` add new route `Full-Search`
 >
 
 **`Tools`** : net 8.0, swagger, integration-testing
