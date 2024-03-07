@@ -9,7 +9,7 @@ public static class SwaggerExtensions
 {
     public static void AddSwaggerDoc(this IServiceCollection services)
     {
-        services.ConfigureOptions<ConfigureSwaggerOptions>();
+        services.ConfigureOptions<ConfigureSwaggerGenOptions>();
         services.AddSwaggerGen();
     }
 
@@ -19,19 +19,21 @@ public static class SwaggerExtensions
         app.UseSwaggerUI(options =>
         {
             options.DisplayRequestDuration();
-            var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-            foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+            var descriptions = app.DescribeApiVersions();
+            foreach (var description in descriptions)
             {
-                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpper());
+                var url = $"/swagger/{description.GroupName}/swagger.json";
+                var name = description.GroupName;
+                options.SwaggerEndpoint(url, name);
             }
         });
     }
 
-    public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
+    public class ConfigureSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider _provider;
 
-        public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
+        public ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider provider)
         {
             _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
