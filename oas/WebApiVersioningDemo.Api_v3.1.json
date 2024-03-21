@@ -1,0 +1,112 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "WebApiVersioningDemo",
+    "version": "3.1"
+  },
+  "paths": {
+    "/api/v3.1/weathers": {
+      "get": {
+        "tags": [
+          "Weathers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; x-api-version=3.1": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Weather"
+                  }
+                }
+              },
+              "application/json; x-api-version=3.1": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Weather"
+                  }
+                }
+              },
+              "text/json; x-api-version=3.1": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Weather"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3.1/weathers/search": {
+      "get": {
+        "tags": [
+          "Weathers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; x-api-version=3.1": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Weather"
+                  }
+                }
+              },
+              "application/json; x-api-version=3.1": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Weather"
+                  }
+                }
+              },
+              "text/json; x-api-version=3.1": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Weather"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Weather": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "celsiusTemperature": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fahrenheitTemperature": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
