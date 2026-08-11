@@ -4,7 +4,7 @@ namespace WebApiVersioningDemo.Api.Extensions;
 
 public static class VersioningExtensions
 {
-    private const string ApiVersionHeaderName = "x-api-version";
+    private const string ApiVersionParameterName = "x-api-version";
     
     public static IServiceCollection AddVersioning(this IServiceCollection services)
     {
@@ -17,6 +17,7 @@ public static class VersioningExtensions
                 options.DefaultApiVersion = defaultVersion;
                 options.ApiVersionReader = GetApiVersionReader();
             })
+            .AddMvc()
             .AddApiExplorer(options =>
             {
                 options.GroupNameFormat = "'v'VVV";
@@ -32,8 +33,8 @@ public static class VersioningExtensions
     {
         return ApiVersionReader.Combine(
             new UrlSegmentApiVersionReader(),
-            new QueryStringApiVersionReader(ApiVersionHeaderName),
-            new HeaderApiVersionReader(ApiVersionHeaderName),
-            new MediaTypeApiVersionReader(ApiVersionHeaderName));
+            new QueryStringApiVersionReader(ApiVersionParameterName),
+            new HeaderApiVersionReader(ApiVersionParameterName),
+            new MediaTypeApiVersionReader(ApiVersionParameterName));
     }
 }

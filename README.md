@@ -19,4 +19,4 @@ In this repo, i m using a basic web api solution with multiple versions supporte
 > - `V3.2` add new route `Full-Search`
 >
 
-**`Tools`** : net 8.0, swagger, integration-testing
+**`Tools`** : net 10.0, swagger, integration-testing
